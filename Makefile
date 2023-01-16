@@ -10,7 +10,7 @@ PROJECTNAME=$(shell basename `pwd`)
 buildlinux:
 	@echo $$($(version))
 	$(info +Компиляция Linux)
-	go build -ldflags "-s -w -X 'main.versionProg=$$($(version))'" -o ./bin/main/$(PROJECTNAME) cmd/main/main.go
+	 go build -ldflags "-s -w -X 'main.versionProg=$$($(version))'" -o ./bin/main/$(PROJECTNAME) cmd/main/main.go
 buildzip:
 	$(info +Компиляция с сжатием)
 	go build -ldflags "-s -w" -o ./bin/main/$(PROJECTNAME) cmd/main/main.go
@@ -27,10 +27,10 @@ buildandroid:
 	ANDROID_SDK_ROOT=/home/arkadii/Android/Sdk/ go run gioui.org/cmd/gogio -ldflags "-s -w -X 'main.versionProg=$$($(version))'" -o ./bin/main/$(PROJECTNAME).apk -target android -icon appicon.png -arch arm64 -appid Go.arkiv cmd/main/main.go
 
 run: buildlinux buildwin 
-	$(info +Запуск)
-	./bin/main/$(PROJECTNAME)
+	$(info +Готово)
+	#./bin/main/$(PROJECTNAME)
 
-build: buildlinux buildwin #buildwasm buildandroid
+build: buildlinux #buildwin #buildwasm buildandroid
 	$(info +Сборка)
 
 #www: build
